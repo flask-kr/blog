@@ -1,20 +1,77 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<main class="ui three cloumn grid">
-    <aside class="column">1</aside>
-    <section class="column">2</section>
-    <section class="column">3</section>
-</main>
-<nav class="ui menu">
-    <h3 class="header item">Title</h3>
-    <a class="active item">Home</a>
-    <a class="item">Link</a>
-    <a class="item">Link</a>
-    <span class="right floated text item">Signed in as <a href="#">user</a></span>
-</nav>
-<button class="large ui button">
-  <i class="heart icon"></i>
-    CSS Sample
-</button>
+<div class="ui menu">
+  <a class="active item">
+    <i class="home icon"></i> Home
+  </a>
+  <a class="item">
+    <i class="mail icon"></i> Messages
+  </a>
+  <div class="right menu">
+    <div class="item">
+      <div class="ui icon input">
+        <input type="text" placeholder="Search...">
+        <i class="search link icon"></i>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ui message">
+  <div class="header">
+    Welcome back!
+  </div>
+  <ul class="list">
+    <li>It's good to see you again.</li>
+    <li>Did you know it's been a while?</li>
+  </ul>
+</div>
+<div class="ui items">
+  <div class="item">
+    <div class="image">
+      <img src="/static/Semantic-UI/images/highres.jpg">
+      <a class="like ui corner label">
+        <i class="like icon"></i>
+      </a>
+    </div>
+    <div class="content">
+      <div class="name">Cute Dog</div>
+      <p class="description">This dog has some things going for it. Its pretty cute and looks like it'd be fun to cuddle up with.</p>
+      <div class="extra">
+          199 votes
+      </div>
+    </div>
+  </div>
+  <div class="item">
+    <div class="image">
+      <img src="/static/Semantic-UI/images/hachiguchi.jpg">
+      <a class="like ui corner label">
+        <i class="like icon"></i>
+      </a>
+    </div>
+    <div class="content">
+      <div class="meta">5 days ago</div>
+      <div class="name">hachiguchi</div>
+      <p class="description">Sometimes its more important to have a dog you know you can trust. But not every dog is trustworthy, you can tell by looking at its smile.</p>
+      <div class="extra">
+          311 votes
+      </div>
+    </div>
+  </div>
+  <div class="item">
+    <div class="image">
+      <img src="/static/Semantic-UI/images/sen.jpg">
+      <a class="like ui corner label">
+        <i class="like icon"></i>
+      </a>
+    </div>
+    <div class="content">
+      <div class="name">sen</div>
+      <p class="description">Silly dogs can be quite fun to have as companions. You never know what kind of ridiculous thing they will do.</p>
+      <div class="extra">
+          522 votes
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
