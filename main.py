@@ -2,6 +2,7 @@ from web import create_app, create_db
 #from web import home
 from web.home import module as home
 from web.webtoon import module as webtoon
+from web.board import module as board
 from flask import Flask
 from flask import render_template_string
 
@@ -16,6 +17,7 @@ def index():
 #app.register_blueprint(home, url_prefix='/home')
 app.register_blueprint(home)
 app.register_blueprint(webtoon)
+app.register_blueprint(board)
 
 # init db
 db = create_db()
