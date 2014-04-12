@@ -13,4 +13,10 @@ def index():
         ).order_by(WEBTOON.title_no.desc())
     return render_template('webtoon/index.html', entity=webtoon)
 
+@module.route('/webtoon/sub_list')
+def sub_list():
+    return render_template('webtoon/sub_list.html')
 
+@module.route('/webtoon/id')
+def view():
+    return render_template('webtoon/view.html')

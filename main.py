@@ -26,4 +26,4 @@ db.init_app(app)
 #db.create_all()
 
 if __name__ == '__main__':
-    app.run("0.0.0.0",port=4000, debug=app.config['DEBUG'])
+    app.run("0.0.0.0", debug=app.config['DEBUG'])

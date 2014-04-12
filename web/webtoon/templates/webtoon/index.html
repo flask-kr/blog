@@ -4,14 +4,14 @@
 <!-- 메뉴 -->
 <div class="ui tiered menu">
     <div class="menu">
-        <a class="item">
+        <a href="{{url_for('home.index')}}" class="item">
             <i class="users icon"></i>
             Home
         </a>
         <a class="active item">
             <i class="grid layout icon"></i> WebToon
         </a>
-        <a class="item">
+        <a href="{{url_for('board.index')}}" class="item">
             <i class="mail icon"></i> Board
         </a>
         <div class="right menu">
@@ -41,59 +41,24 @@
 
 <!-- 디테일 카드 -->
 <div class="ui items">
+{% for web in entity %}
     <div class="item">
         <div class="image">
-            <img src="imgs[0][0]">
+            <a href="{{url_for('.sub_list')}}" class="ui medium image">
+                <img src="/static/image/3.jpg">
+	    </a>
             <a class="like ui corner label">
                 <i class="like icon"></i>
-            </a>
+	    </a>
         </div>
         <div class="content">
-            <div class="name">Cute Dog</div>
-            <p class="description">This dog has some things going for it. Its pretty cute and looks like it'd be fun to cuddle up with.</p>
+            <div class="name">{{web.title}}</div>
+            <p class="description">webtoon comment : {{web.title_no}} : {{web.site_name}}</p>
             <div class="extra">
                 199 votes
             </div>
         </div>
     </div>
-    <div class="item">
-        <div class="image">
-            <img src="/static/Semantic-UI/images/hachiguchi.jpg">
-            <a class="like ui corner label">
-                <i class="like icon"></i>
-            </a>
-    </div>
-        <div class="content">
-            <div class="meta">5 days ago</div>
-            <div class="name">hachiguchi</div>
-            <p class="description">
-            {% for web in entity %}
-                {{web.title}}
-                {{web.title_no}}
-                {{web.image_url}}
-                {{web.site_name}}
-                {{web.status}}
-            {% endfor %}
-            </p>
-            <div class="extra">
-                311 votes
-            </div>
-        </div>
-    </div>
-    <div class="item">
-        <div class="image">
-            <img src="http://thumb.comic.naver.net/webtoon/335885/671/inst_thumbnail_20131223144211.jpg">
-            <a class="like ui corner label">
-            <i class="like icon"></i>
-            </a>
-        </div>
-        <div class="content">
-            <div class="name">sen</div>
-            <p class="description">Silly dogs can be quite fun to have as companions. You never know what kind of ridiculous thing they will do.</p>
-            <div class="extra">
-                522 votes
-            </div>
-        </div>
-    </div>
+{% endfor %}
 </div>
 {% endblock %}
