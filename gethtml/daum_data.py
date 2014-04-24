@@ -8,61 +8,39 @@ html = urllib2.urlopen(url).read()
 soup = BeautifulSoup(html)
 
 imgs = soup.findAll("img")
-title = soup.find_all("script", text=re.compile('data1.push'))
-
-#print imgs
-#print "title : ", title
-list_title = []
-for item in title:
-	for line in item.text.split('data1.push'):
-		# print line
-		# print '-'* 40
-		if line.startswith('({img'):
-			list_title.append(line) 
-
-del list_title[-1]
-# for l in list_title:
-# 	print l
-# 	print '='*40
-
-comp = list_title[0].split(",")
-a = []
-b =[]
-c = []
-# for c in comp:
-# 	print c
-# 	print '='*40
-
-for i in range(len(comp)):
-	a.append(comp[i].split("\""))
-	# print comp[i].split("\"")
-	print a[i][1]
-	print '='*40
-	b.append(a[i][1])
-
-print b
-# print a
-# print b
-# print c
 
 
+############ main_title ##############
+# main_title = soup.find("title").contents
 
+############# daum data #############
 
-#print "list_title : ",list_title
+## refined_data
+## 0: title_image_url 1:chapter 3:detail_url 4:date
 
-	#raw_input()
-# print type(title)
+# daum_data = soup.find_all("script", text=re.compile('data1.push'))
+# temp_1 = []
+# temp_2 =[]
+# refined_data = []
+# data = []
+# for item in daum_data:
+# 	for line in item.text.split('data1.push'):
+# 		if line.startswith('({img'):
+# 			data.append(line) 
 
-# title_split = title[0].split('data1.push')
+# del data[-1]
+# for list in range(len(data)):
+# 	comp = data[list].split(",")
+# 	for i in range(len(comp)):
+# 		temp_1.append(comp[i].split("\""))
+# 		temp_2.append(temp_1[i][1])
+# 	refined_data.append(temp_2)
+# 	temp_1 = []
+# 	temp_2 = []
 
-# print title_split
-
-
-
-
-
-
-
+# for item in refined_data:
+# 	print item
+# 	print '-'*40
 
 ######## big title image ########
 
