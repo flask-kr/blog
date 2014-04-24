@@ -9,38 +9,38 @@ soup = BeautifulSoup(html)
 
 imgs = soup.findAll("img")
 
-
-############ main_title ##############
-# main_title = soup.find("title").contents
-
 ############# daum data #############
 
 ## refined_data
-## 0: title_image_url 1:chapter 3:detail_url 4:date
+## 0: title_image_url 1:chapter 2:detail_url 3:date 4:main_title
 
-# daum_data = soup.find_all("script", text=re.compile('data1.push'))
-# temp_1 = []
-# temp_2 =[]
-# refined_data = []
-# data = []
-# for item in daum_data:
-# 	for line in item.text.split('data1.push'):
-# 		if line.startswith('({img'):
-# 			data.append(line) 
+daum_data = soup.find_all("script", text=re.compile('data1.push'))
+main_title = soup.find("title").contents
+temp_1 = []
+temp_2 =[]
+refined_data = []
+data = []
+for item in daum_data:
+	for line in item.text.split('data1.push'):
+		if line.startswith('({img'):
+			data.append(line) 
 
-# del data[-1]
-# for list in range(len(data)):
-# 	comp = data[list].split(",")
-# 	for i in range(len(comp)):
-# 		temp_1.append(comp[i].split("\""))
-# 		temp_2.append(temp_1[i][1])
-# 	refined_data.append(temp_2)
-# 	temp_1 = []
-# 	temp_2 = []
+del data[-1]
+for list in range(len(data)):
+	comp = data[list].split(",")
+	for i in range(len(comp)):
+		temp_1.append(comp[i].split("\""))
+		temp_2.append(temp_1[i][1])
+	refined_data.append(temp_2)
+	temp_1 = []
+	temp_2 = []
 
-# for item in refined_data:
-# 	print item
-# 	print '-'*40
+for item in refined_data:
+	del item[5:9]
+	del item[2]
+	item.append(main_title[0])
+
+print refined_data
 
 ######## big title image ########
 
