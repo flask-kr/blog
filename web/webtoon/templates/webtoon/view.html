@@ -1,5 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-view page
+{% for web in entity %}
+    <img src="{{web.detail_url}}" />
+{% endfor %}
 {% endblock %}

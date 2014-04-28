@@ -44,8 +44,8 @@
 {% for web in entity %}
     <div class="item">
         <div class="image">
-            <a href="{{url_for('.sub_list')}}" class="ui medium image">
-                <img src="/static/image/3.jpg">
+            <a href="{{url_for('.sub_list', id=web.title_no)}}" class="ui medium image">
+                <img src="{{web.image_url}}">
 	    </a>
             <a class="like ui corner label">
                 <i class="like icon"></i>

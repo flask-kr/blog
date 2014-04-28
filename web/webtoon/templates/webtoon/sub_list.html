@@ -2,11 +2,13 @@
 
 {% block body %}
 <div class="ui selection list">
-  <div class="item">
-    <img class="ui avatar image" src="/images/demo/avatar.jpg">
-    <div class="content">
-      <div class="header">Snickerdoodle</div>
-      An excellent companion
-    </div>
+{% for web in entity %}
+	<a href="{{url_for('.view', detail_id=web.id)}}" class="item">
+		<img src="{{web.list_title_url}}">
+		<div class="content">
+			<div class="header">{{web.chapter}}</div>
+		</div>
+	</a>
+{% endfor %}
 </div>
 {% endblock %}
