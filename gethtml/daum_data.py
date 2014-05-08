@@ -13,7 +13,7 @@ conn = mdb.connect(
 	db="blog",
 	charset="utf8")
 
-url = "http://webtoon.daum.net/webtoon/view/mimelasplendens"
+url = "http://webtoon.daum.net/webtoon/view/heightofhim"
 html = urllib2.urlopen(url).read()
 soup = BeautifulSoup(html)
 main_title_image = soup.find("div", {"class" : "wrap_image"}).find('img')['src']
@@ -84,7 +84,6 @@ img_headers = {
 	"Pragma": "no-cache",
 	"Cache-Control": "max-age=0"
 }
-
 for d in refined_data: 
 	r = requests.post("http://webtoon.daum.net/webtoon/viewer_images.js?webtoon_episode_id="+d[6], headers=img_headers)
 	detail_data = json.loads(r.text)
@@ -95,11 +94,10 @@ for d in refined_data:
 		temp.append(d[1])
 		temp.append(d[0])
 		temp.append(dict.values()[0])
-		print "here"
-		break;
+		refined_detail.append(temp)
+		temp =[]
 
-	refined_detail.append(temp)
-	break;
+# print refined_detail
 
 # print refined_detail
 
@@ -134,32 +132,34 @@ for d in refined_data:
 
 
 ############### insert db DETAIL WETOON ###########
-# cur = conn.cursor()
-# query = "INSERT INTO TB_WEBTOON_DETAIL(ID, \
-# 	IDENTIFY_NO, CHAPTER, LIST_TITLE_URL, DETAIL_URL) \
-# 	VALUES ('%s', '%s', '%s', '%s', '%s' )" % \
-# 	(refined_detail[0][0], refined_detail[0][1], refined_detail[0][2], refined_detail[0][3], refined_detail[0][4])
+cur = conn.cursor()
+try:
+	for data in refined_detail:
+		print data
+		query = "INSERT INTO TB_WEBTOON_DETAIL(\
+			IDENTIFY_NO, DETAIL_NO, CHAPTER, LIST_TITLE_URL, DETAIL_URL) \
+			VALUES ('%s', '%s', '%s', '%s', '%s' )" % \
+			(data[1], data[0], data[2], data[3], data[4])
+		cur.execute(query)
 
-# query_2 = "SELECT * FROM TB_WEBTOON_DETAIL"
+	query_2 = "SELECT * FROM TB_WEBTOON_DETAIL"
+	cur.execute(query)
+	conn.commit()
+	cur.execute(query_2)
+	result = cur.fetchall()
+	for row in result:
+		title = row[0]
+		title_no = row[1]
+		site_name = row[2]
+		image_url = row[3]
+		status = row[4]
+		print title, title_no, site_name, image_url, status
 
-# try:
-# 	cur.execute(query)
-# 	conn.commit()
-# 	cur.execute(query_2)
-# 	result = cur.fetchall()
-# 	for row in result:
-# 		title = row[0]
-# 		title_no = row[1]
-# 		site_name = row[2]
-# 		image_url = row[3]
-# 		status = row[4]
-# 		print title, title_no, site_name, image_url, status
+except mdb.Error as e:
+	conn.rollback()
+	print e
 
-# except mdb.Error as e:
-# 	conn.rollback()
-# 	print e
-
-# conn.close()
+conn.close()
 
 
 ########### Save detail_image_url ####################

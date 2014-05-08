@@ -18,8 +18,9 @@ class WEBTOON(db.Model):
 class WEBTOON_DETAIL(db.Model):
 
     __tablename__ = 'TB_WEBTOON_DETAIL'
-    id = db.Column('ID', db.String(255), primary_key=True)
+    id = db.Column('ID', db.Integer, primary_key=True)
     identify_no = db.Column('IDENTIFY_NO', db.String(255))
+    detail_no = db.Column('DETAIL_NO', db.String(255))
     chapter = db.Column('CHAPTER', db.String(255))
     list_title_url = db.Column('LIST_TITLE_URL', db.String(255))
     detail_url = db.Column('DETAIL_URL', db.String(255))

@@ -3,7 +3,7 @@
 {% block body %}
 <div class="ui selection list">
 {% for web in entity %}
-	<a href="{{url_for('.view', detail_id=web.id)}}" class="item">
+	<a href="{{url_for('.view', id=web.identify_no ,detail_id=web.chapter)}}" class="item">
 		<img src="{{web.list_title_url}}">
 		<div class="content">
 			<div class="header">{{web.chapter}}</div>
